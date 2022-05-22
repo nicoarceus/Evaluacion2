@@ -108,31 +108,17 @@
         var VIP= document.getElementById("idVip").value;
         var CanchaGeneral= document.getElementById("CGeneral").value;
           //sumas de las variables con el valor asignado
-        var SumaPlateaAlta= parseInt(PlateaAlta)*parseInt(80000);
-        var SumaVIP= parseInt(VIP)*parseInt(100000);
-        var SumaCanchaGeneral= parseInt(CanchaGeneral)*parseInt(70000);
+        var SumaPlateaAlta= Number(PlateaAlta)*80000;
+        var SumaVIP= Number(VIP)*100000;
+        var SumaCanchaGeneral= Number(CanchaGeneral)*70000;
         console.log(SumaCanchaGeneral);
         console.log(SumaPlateaAlta);
         console.log(SumaVIP);
         
 
         let Total=SumaCanchaGeneral+SumaPlateaAlta+SumaVIP;
-        if(PlateaAlta==""){
-          alert("Digite 0 si no desea etrada en platea Alta")
-          document.getElementById("PlaAlta").focus();
-        }else{
-          if(CanchaGeneral==""){
-            alert("Digite 0 si no desea etrada en platea Alta")
-          document.getElementById("CGeneral").focus();
-          }else{
-            if(VIP==""){
-              alert("Digite 0 si no desea etrada en platea Alta")
-          document.getElementById("idVip").focus();
-            } 
-          }
-        }
         console.log(SumaCanchaGeneral+" - "+SumaPlateaAlta+" - "+SumaVIP)
-        alert("El total a pagar es: $"+Total);
+        alert("El total a pagar es: $"+Total);    
       }
     </script>
 
