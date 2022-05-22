@@ -72,7 +72,7 @@
           <tr>
             <td>VIP</td>
             <td>$100.000</td>
-            <td>4 <input type="text" id="Vip" placeholder="Digite la cantidad de entradas">
+            <td>4 <input type="text" id="idVip" placeholder="Digite la cantidad de entradas">
               <a href="PagoEntradas.html">
                 <div class="btn btn-primary" id="btnVIP" onclick="SumaVIP()" style="float: right;">Comprar entrada</div></a></td>
             
@@ -80,13 +80,14 @@
           <tr>
             <td>Cancha General</td>
             <td>$70.000</td>
-            <td>9<input type="text" id="CGeneral"placeholder="Digite la cantidad de entradas">
+            <td>9<input type="text" id="CGeneral" placeholder="Digite la cantidad de entradas">
               <a href="PagoEntradas.html">
                 <div class="btn btn-primary" id="btnCanchaGeneral" onclick="SumaCanchaGeneral()" style="float: right;">Comprar entrada</div></a></td>
             
           </tr>
     
         </table>
+      <input type="button" id="SumaTotal" onclick="Total()" value="Ver total" style="float: center;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"></script>
@@ -101,26 +102,38 @@
     <script type="text/javascript">
         const urlBase = "https://pgyex2.azurewebsites.net//Swagger";
         
+        function Total(){
+          //declaracion de variables
         var PlateaAlta= document.getElementById("PlaAlta").value;
-        var VIP= document.getElementById("Vip").value;
+        var VIP= document.getElementById("idVip").value;
         var CanchaGeneral= document.getElementById("CGeneral").value;
-        var SumaPlateaAlta= parseFloat(PlateaAlta)*80000;
-        var SumaVIP= parseFloat(VIP)*100000;
-        var SumaCanchaGeneral= parseFloat(CanchaGeneral)*70000;
-        var Total=SumaCanchaGeneral+SumaPlateaAlta+SumaVIP;
-        if(PlaAlta=""){
-          PlateaAlta= 0;
+          //sumas de las variables con el valor asignado
+        var SumaPlateaAlta= parseInt(PlateaAlta)*parseInt(80000);
+        var SumaVIP= parseInt(VIP)*parseInt(100000);
+        var SumaCanchaGeneral= parseInt(CanchaGeneral)*parseInt(70000);
+        console.log(SumaCanchaGeneral);
+        console.log(SumaPlateaAlta);
+        console.log(SumaVIP);
+        
+
+        let Total=SumaCanchaGeneral+SumaPlateaAlta+SumaVIP;
+        if(PlateaAlta==""){
+          alert("Digite 0 si no desea etrada en platea Alta")
+          document.getElementById("PlaAlta").focus();
         }else{
-          if(CGeneral=""){
-            CanchaGeneral= 0;
+          if(CanchaGeneral==""){
+            alert("Digite 0 si no desea etrada en platea Alta")
+          document.getElementById("CGeneral").focus();
           }else{
-            if(Vip=""){
-              VIP= 0;
-            }
+            if(VIP==""){
+              alert("Digite 0 si no desea etrada en platea Alta")
+          document.getElementById("idVip").focus();
+            } 
           }
         }
+        console.log(SumaCanchaGeneral+" - "+SumaPlateaAlta+" - "+SumaVIP)
         alert("El total a pagar es: $"+Total);
-
+      }
     </script>
 
   </body>
