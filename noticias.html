@@ -39,15 +39,15 @@
         <h1>Noticias de nustros artistas</h1>    
     </div>
 
-    <div class="container-fluid">
-      <h1>Titulo</h1>
+    <div class="container-fluid" id="contenido">
+      <h1 id="titulo1">Titulo</h1>
 
       <h2>Subtitulo</h2>
 
       <p id="parrafo">Parrafo</p>
 
-      <button id="boton"> Presiona aqui para desaparecer parrafo</button>
-      <button id="boton2"> Presiona aqui para aparecer parrafo</button>
+      <button id="boton" onclick="traer()"> Presiona aqui para desaparecer parrafo</button>
+      
       
 
     </div>
@@ -67,15 +67,30 @@
     }); 
     </script>
 
-    <script>
+     <!--<script>
+        var contenido = document.querySelector('#contenido')
+        function traer() {
+            fetch('https://pgyex2.azurewebsites.net/api/Noticia')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            });
+        }
+
+    </script> -->
+
+
+
+
+
+
+   <script>
         $(document).ready(function(){
             $.get("https://pgyex2.azurewebsites.net/api/Noticia",
                 function(data, status){
   
                   console.log(data)
-  
-                });
-  
+            });
         });
     </script> 
 
