@@ -35,13 +35,33 @@
   <div class="container">
     <h1>Artistas:</h1>
     <div class="row" id="onload">
-        <div class="selector-artista">
-            Elige un artista
-            <select id="#cmbArtista"></select>
+      <input class="form-control" list="ListaArtista" id="exampleDataList" 
+      placeholder="Buscar artista" size="30px">
+      <datalist id="ListaArtista">
+        <option>  </option> 
+
+
+        </datalist>
+        
+            <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">Numero</th>
+                      <th scope="col">Nombre artista</th>
+                      <th scope="col">fecha nacimiento</th>
+                      <th scope="col">Lugar de nacimiento</th>
+                      <th scope="col">edad</th>
+                      <th scope="col">genero </th>
+                      
+                  </tr>
+              </thead>
+              <tbody>        </tbody>
+          </table>
        </div>
+
+       
     </div>
-    <button id="#btnPrevio">Anterior</button>
-    <button id="#btnSiguiente">Siguiente</button>
+    
 </div>
       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -57,36 +77,46 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript">
         const urlArtista = "https://pgyex2.azurewebsites.net/api/Artista";
-        const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento/PorArtista";
+        const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento";
         const ls = window.localStorage;
         $(document).ready(function(){
           $.get(urlArtista,function(data){
-            var new_artista = '<select name="" id="">'
-            var artista=data;
-            $("#cmbArtista").html(data);
-            console.log(data);
-            //for (var i = 0; i < artista.length; i++) {
-               // new_artista += '<option value="'+artista[i].nombre+'">'+i+'</option>'
-                
-            //}
+            
+            
+        console.log(data)
+                var artista = data;    
+                var tBodyNode = $('tbody');
+                for(var i = 0; i < artista.length; i++){
+                    var trNode = document.createElement('tr'); // Generamos la Fila
+                    tBodyNode.append(trNode); // Agregamos la fila al tbody
 
-                
+                    var tdIdNode = document.createElement('td');
+                    tdIdNode.textContent = i + 1; // Para que los # no empiecen en 0
+                    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
+                    
+                    var tdNombreNode = document.createElement('td');
+                    tdNombreNode.textContent = artista[i].nombre;
+                    trNode.append(tdNombreNode);
+
+
+                    var tdFechaNacNode = document.createElement('td');
+                    tdFechaNacNode.textContent = artista[i].fechaNacimiento.substring(0,10);
+                    trNode.append(tdFechaNacNode);
+                    var tdLugarNacNode = document.createElement('td');
+                    tdLugarNacNode.textContent = artista[i].lugarNacimiento;
+                    trNode.append(tdLugarNacNode);
+                    var tdEdadNode = document.createElement('td');
+                    tdEdadNode.textContent = artista[i].edad;
+                    trNode.append(tdEdadNode);
+                    var tdGeneroNode = document.createElement('td');
+                    tdGeneroNode.textContent = artista[i].genero;
+                    trNode.append(tdGeneroNode);
                     
 
-                
-               
-        });
-        });
+                }
+              });
 
-
-
-             
-        
-        
-        
-
-
-        
+        });       
     </script>
 
   </body>
