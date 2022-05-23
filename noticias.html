@@ -44,13 +44,40 @@
 
       <h2>Subtitulo</h2>
 
-      <p>Parrafo</p>
+      <p id="parrafo">Parrafo</p>
+
+      <button id="boton"> Presiona aqui para desaparecer parrafo</button>
+      <button id="boton2"> Presiona aqui para aparecer parrafo</button>
+      
 
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
     
 
+    <script>
+    $(document).ready(function(){
+        $("#boton").click(function(){
+            $("#parrafo").hide(2000);
+        });
+        $("#boton2").click(function(){
+            $("#parrafo").show();
+        });
+  
+    }); 
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $.get("https://pgyex2.azurewebsites.net/api/Noticia",
+                function(data, status){
+  
+                  console.log(data)
+  
+                });
+  
+        });
+    </script> 
 
 
 
@@ -69,19 +96,7 @@
 
 
 
-
-
-<script type="text/javascript">
-      $(document).ready(function(){
-          $.get("https://pgyex2.azurewebsites.net/swagger/v1/swagger.json",
-              function(data){
-
-                console.log(data)
-
-              });
-
-      });
-      </script> 
+    
 
 
 
