@@ -33,22 +33,12 @@
       </header>
 <body>
   <div class="container">
-    <h1>Eventos disponibles:</h1>
+    <h1>Artistas:</h1>
     <div class="row" id="onload">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Numero</th>
-                    <th scope="col">Nombre evento</th>
-                    <th scope="col">Lugar</th>
-                    <th scope="col">fecha</th>
-                    <th scope="col">Tipo de evento</th>
-                    <th scope="col">Espacio evento</th>
-                </tr>
-            </thead>
-            <tbody>        </tbody>
-        </table>
-
+        <div class="selector-artista">
+            Elige un artista
+            <select id="#cmbArtista"></select>
+       </div>
     </div>
     <button id="#btnPrevio">Anterior</button>
     <button id="#btnSiguiente">Siguiente</button>
@@ -66,44 +56,31 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script type="text/javascript">
-        const urlBase = "https://pgyex2.azurewebsites.net/api/Evento";
+        const urlArtista = "https://pgyex2.azurewebsites.net/api/Artista";
+        const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento/PorArtista";
         const ls = window.localStorage;
         $(document).ready(function(){
-          $.get(urlBase,function(data){
+          $.get(urlArtista,function(data){
+            var new_artista = '<select name="" id="">'
+            var artista=data;
+            $("#cmbArtista").html(data);
+            console.log(data);
+            //for (var i = 0; i < artista.length; i++) {
+               // new_artista += '<option value="'+artista[i].nombre+'">'+i+'</option>'
+                
+            //}
 
-                console.log(data)
-                var evento = data;    
-                var tBodyNode = $('tbody');
-                for(var i = 0; i < evento.length; i++){
-                    var trNode = document.createElement('tr'); // Generamos la Fila
-                    tBodyNode.append(trNode); // Agregamos la fila al tbody
-                    var tdIdNode = document.createElement('td');
-                    tdIdNode.textContent = i + 1; // Para que los # no empiecen en 0
-                    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
-                    var tdNombreNode = document.createElement('td');
-                    tdNombreNode.textContent = evento[i].nombre;
-                    trNode.append(tdNombreNode);
-                    var tdLugarNode = document.createElement('td');
-                    tdLugarNode.textContent = evento[i].donde;
-                    trNode.append(tdLugarNode);
-                    var tdFechaNode = document.createElement('td');
-                    tdFechaNode.textContent = evento[i].fecha.substring(0,10);
-                    trNode.append(tdFechaNode);
-                    var tdTipoEventoNode = document.createElement('td');
-                    tdTipoEventoNode.textContent = evento[i].tipoEvento;
-                    trNode.append(tdTipoEventoNode);
-                    var tdEspacioNode = document.createElement('td');
-                    tdEspacioNode.textContent = evento[i].tipoEventoStr;
-                    trNode.append(tdEspacioNode);
-                    console.log(evento[i].tipoEvento);
+                
+                    
 
-                }
+                
                
+        });
         });
 
 
 
-              });
+             
         
         
         
