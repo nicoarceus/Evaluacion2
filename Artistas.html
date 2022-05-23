@@ -81,10 +81,18 @@
         const ls = window.localStorage;
         $(document).ready(function(){
           $.get(urlArtista,function(data){
-            
+            var artista = data; 
+            var opciones=$('option')
+
+              for(var i = 0; i < artista.length; i++){
+              var nombreArtista=document.createElement('option');
+              nombreArtista.textContent=artista[i].nombre;
+              opciones.append(nombreArtista);
+
+            }
             
         console.log(data)
-                var artista = data;    
+                var artista = data; 
                 var tBodyNode = $('tbody');
                 for(var i = 0; i < artista.length; i++){
                     var trNode = document.createElement('tr'); // Generamos la Fila
@@ -115,6 +123,9 @@
 
                 }
               });
+            function prueba(selector)  {
+
+            };
 
         });       
     </script>
