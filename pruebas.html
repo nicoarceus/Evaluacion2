@@ -7,19 +7,46 @@
     <title>Document</title>
 </head>
 <body>
-    <select id="listaArtistas"></select>
+    <select id="listaArtistas" ></select>
+
+    <table class="table" id="tablaEventos" border="1">
+        <thead>
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Nombre evento</th>
+                
+                <th scope="col">Lugar</th>
+                <th scope="col">fecha</th>
+                <th scope="col">Tipo de evento</th>
+                <th scope="col">Espacio evento</th>
+            </tr>
+        </thead>
+        <tbody>        </tbody>
+    </table>
+    <button id="btnComprar" disabled>Comprar entrada</button>
 
     <script src="jquery/jquery-3.6.0.js"></script>
     <script type="text/javascript">
     const urlArtista="https://pgyex2.azurewebsites.net/api/Artista";
     var urlEventoArtista="https://pgyex2.azurewebsites.net/api/Evento/PorArtista";
     $(document).ready(function(){
+        init();
+        $('#btnComprar').click(function(){
+            window.open('PagoEntradas.html',"_self");
+            //$.post("PagoEntradas.html",function(htmlExterno){
+            //    alert("entro funcion del boton")
+            //})
+        });
         seleccion=document.getElementById("listaArtistas");
         seleccion.addEventListener("change",function(){
             console.log(seleccion.value)
             
+            limpiarTabla();
             
             cargarEventos(seleccion.value);
+            
+
+            
             
         });
         $.get(urlArtista,function(data){
@@ -33,18 +60,51 @@
             }
         })
     });
+    
     function cargarEventos(id){
         console.log("cargando eventos id["+id+"]")
-        const urlEvArtistaId="https://pgyex2.azurewebsites.net/api/Evento/PorArtista/1";
+        const urlEvArtistaId="https://pgyex2.azurewebsites.net/api/Evento/PorArtista"+"/"+id;
         const eventos="https://pgyex2.azurewebsites.net/api/Evento";
         $.get(urlEvArtistaId,function(data){
-            for(var j=0;j<data.length;j++){
-                console.log(data)
-            }
+            $('#btnComprar').attr('disabled',false);
+            var tBodyNode = $('tbody');
+            var trNode = document.createElement('tr'); // Generamos la Fila
+                    tBodyNode.append(trNode); // Agregamos la fila al tbody
+                    var tdIdNode = document.createElement('td');
+                    tdIdNode.textContent =  data.id; // Para que los # no empiecen en 0
+                    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
+                    var tdNombreNode = document.createElement('td');
+                    tdNombreNode.textContent = data.nombre;
+                    trNode.append(tdNombreNode);
+  
+                    
+                    
+                    var tdLugarNode = document.createElement('td');
+                    tdLugarNode.textContent = data.donde;
+                    trNode.append(tdLugarNode);
+                    var tdFechaNode = document.createElement('td');
+                    tdFechaNode.textContent = data.fecha.substring(0,10);
+                    trNode.append(tdFechaNode);
+                    var tdTipoEventoNode = document.createElement('td');
+                    tdTipoEventoNode.textContent = data.tipoEvento;
+                    trNode.append(tdTipoEventoNode);
+                    var tdEspacioNode = document.createElement('td');
+                    tdEspacioNode.textContent = data.tipoEventoStr;
+                    trNode.append(tdEspacioNode);
+                    
+            
+            console.log(data.id," - "+data.nombre," - "+ data.artista.nombre)
             })
+        }
+    function init(){
+        $('#btnComprar').attr('disabled',true);
+    }
+    function limpiarTabla(){
+        $("#tablaEventos>tbody").empty();
+        
     }
 
-
+    
 
     </script>
 </body>
