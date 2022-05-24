@@ -36,13 +36,8 @@
   <div class="container">
     <h1>Artistas:</h1>
     <div class="row" id="onload">
-      <input class="form-control" list="ListaArtista" id="exampleDataList" 
-      placeholder="Buscar artista" size="30px">
-      <datalist id="ListaArtista">
-        <option>  </option> 
-
-
-        </datalist>
+      <select id="ListaArtista"></select>
+      
         <button id="btnEjecutar">ejecutar ventana</button>
        
             <table class="table">
@@ -82,23 +77,23 @@
         const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento";
         const ls = window.localStorage;
         $(document).ready(function(){
-       	
+          select = document.getElementById("ListaArtista");
           $.get(urlArtista,function(data){
             var artista = data; 
             var opciones=$('option')
             
+          
             
               for(var i = 0; i < artista.length; i++){
-              var nombreArtista=document.createElement('option');
-              nombreArtista.textContent=artista[i].nombre;
-              opciones.append( nombreArtista);
+                var nombreArtista=document.createElement('option');
+                nombreArtista.textContent=artista[i].nombre;
+                opciones.append(nombreArtista);
+              }
+            console.log(data)
 
-            }
             
-
-            
-        console.log(data)
-                var artista = data; 
+            //tabla eventos
+                
                 var tBodyNode = $('tbody');
                 for(var i = 0; i < artista.length; i++){
                     var trNode = document.createElement('tr'); // Generamos la Fila

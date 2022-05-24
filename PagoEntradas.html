@@ -105,10 +105,19 @@
                     trNode.append(tdPrecioNode);
                 }
               
+          });
+        });
+        $.get(urlEvento,function(data){
+            var evento=data;
+            console.log(evento);
+        });
+        $.get(urlArtista,function(data){
+            var artista=data;
+            console.log(artista);
         });
         $('#botonInicio').click(function(){
         alert("sector: "+" "+"\t valor entrada: "+" "+"\t Artista: "+" "+"\t fecha evento:"+" "+"lugar evento"+"" )
-        });
+       
       });
 </script>
 </body>

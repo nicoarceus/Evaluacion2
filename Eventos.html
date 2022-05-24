@@ -36,11 +36,21 @@
   <div class="container">
     <h1>Eventos disponibles:</h1>
     <div class="row" id="onload">
+      <table>
+    <tr>
+        <td>artistas:</td>
+        <td>
+            <asp:DropDownList ID="ddlArtista" runat="server">
+            </asp:DropDownList>
+        </td>
+    </tr>
+      </table>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Numero</th>
                     <th scope="col">Nombre evento</th>
+                    <th scope="col">Artista</th>
                     <th scope="col">Lugar</th>
                     <th scope="col">fecha</th>
                     <th scope="col">Tipo de evento</th>
@@ -84,6 +94,12 @@
                     var tdNombreNode = document.createElement('td');
                     tdNombreNode.textContent = evento[i].nombre;
                     trNode.append(tdNombreNode);
+
+                    var tdArtistaNode = document.createElement('td');
+                    tdArtistaNode.textContent=evento[i].artista.nombre;
+                    trNode.append(tdArtistaNode);      
+                    
+                    
                     var tdLugarNode = document.createElement('td');
                     tdLugarNode.textContent = evento[i].donde;
                     trNode.append(tdLugarNode);
@@ -97,14 +113,15 @@
                     tdEspacioNode.textContent = evento[i].tipoEventoStr;
                     trNode.append(tdEspacioNode);
                     console.log(evento[i].tipoEvento);
-
-                }
-               
-        });
-
-
-
-              });
+                  }
+                  var opciones=$('option')
+                  for(var i = 0; i < artista.length; i++){
+                    var nombreArtista=document.createElement('option');
+                    nombreArtista.textContent=artista[i].nombre;
+                    opciones.append(nombreArtista);
+                  }
+               });
+            });
         
         
         

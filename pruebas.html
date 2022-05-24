@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="listaArtistas"></select>
+
+    <script src="jquery/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+    const urlArtista="https://pgyex2.azurewebsites.net/api/Artista";
+    var urlEventoArtista="https://pgyex2.azurewebsites.net/api/Evento/PorArtista";
+    $(document).ready(function(){
+        seleccion=document.getElementById("listaArtistas");
+        seleccion.addEventListener("change",function(){
+            console.log(seleccion.value)
+            
+            
+            cargarEventos(seleccion.value);
+            
+        });
+        $.get(urlArtista,function(data){
+            seleccion=document.getElementById("listaArtistas");
+            for(var i=0;i<data.length;i++){
+                option=document.createElement("option");
+                option.value=data[i].id;
+                option.text=data[i].nombre;
+                seleccion.appendChild(option);
+                
+            }
+        })
+    });
+    function cargarEventos(id){
+        console.log("cargando eventos id["+id+"]")
+        const urlEvArtistaId="https://pgyex2.azurewebsites.net/api/Evento/PorArtista/1";
+        const eventos="https://pgyex2.azurewebsites.net/api/Evento";
+        $.get(urlEvArtistaId,function(data){
+            for(var j=0;j<data.length;j++){
+                console.log(data)
+            }
+            })
+    }
+
+
+
+    </script>
+</body>
+</html>
