@@ -46,7 +46,7 @@
 
       <p id="parrafo">Parrafo</p>
 
-      <button id="boton" onclick="traer()"> Presiona aqui para desaparecer parrafo</button>
+      <button id="boton" > Presiona aqui para desaparecer parrafo</button>
       
       
 
@@ -55,7 +55,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
     
 
-    <script>
+    <!-- <script>
     $(document).ready(function(){
         $("#boton").click(function(){
             $("#parrafo").hide(2000);
@@ -65,46 +65,44 @@
         });
   
     }); 
-    </script>
-
-     <!--<script>
-        var contenido = document.querySelector('#contenido')
-        function traer() {
-            fetch('https://pgyex2.azurewebsites.net/api/Noticia')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            });
-        }
-
     </script> -->
 
 
 
+    <script>
+        $(document).ready(function(){
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open ('GET', 'https://pgyex2.azurewebsites.net/api/Noticia', true)
+          xmlHttp.send();
+
+          xmlHttp.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200)
+            {
+              var data = JSON.parse(this.responseText);
+              document.getElementById("titulo").innerHTML = data.titulo;
+            }
+            
+          };
+        });
+
+    </script>
 
 
 
-   <script>
+
+
+
+
+    <!--<script>
         $(document).ready(function(){
             $.get("https://pgyex2.azurewebsites.net/api/Noticia",
                 function(data, status){
-  
+                  const ls = window.localStorage;
+                  const titulo = ls.getItem('[titulo]');
                   console.log(data)
             });
         });
-    </script> 
-
-
-
-
-
-
-
-
-
-
-
-
+    </script> -->
 
 
 
