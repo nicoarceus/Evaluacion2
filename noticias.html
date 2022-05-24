@@ -96,6 +96,8 @@
                 pathnoticiaImg=data[i].imagenUri;
                 console.log("imagen = "+pathnoticiaImg)
                 $("img:last").attr("src",pathnoticiaImg);
+                $("img:last").attr("width",500);
+
                 panelNoticia.append(noticiah1);
                 panelNoticia.append(noticiah2);
                 panelNoticia.append(noticiaParrafo);
