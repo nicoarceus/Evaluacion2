@@ -125,20 +125,37 @@
                     trNode.append(tdPrecioNode);
 
                     var tdCantidad = document.createElement('td');
-                    //tdCantidad.append(input );
-                    tdCantidad.inputMode=ticket[i].length;
+                    tdCantidad.textContent=0;
                     trNode.append(tdCantidad);
 
-                    "<input id='edit"+ticket[i]["tdIdNode"]+"' value='"+ticket[i]["Cantidad"]+"' disabled> "
+                    
 
+                    
                    // var tdCantidad=document.createElement('td');
                    // tdCantidad
                    // trNode.append(tdCantidad.inputMode);  
                 }
+                $("table tbody tr").find("td:last").each(function(){
+                  var btnMas = '<input type="button" value=" + " id="mas" style="text-align:center">';
+                    $(this).append('<br> '+btnMas);
+                    var btnMenos = '<input type="button" value=" - " id="menos" onclick="aumentar()">';
+                    $(this).append(btnMenos);
+                    
+                    $('#btnMas').click(function(){
+                      console.log("se agrega o")
+                      tdCantidad.textContent++;
+                      
+
+
+                    })
+                })
+                
               
           });
         }
-
+        function aumentar(){
+          console.log("aumentar en 1");
+        };
         function getParameterByName(name) {
           console.log(name);
             
