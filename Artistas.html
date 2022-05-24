@@ -43,8 +43,8 @@
 
 
         </datalist>
-        <input type="submit" value="Enviar">
-        
+        <button id="btnEjecutar">ejecutar ventana</button>
+       
             <table class="table">
               <thead>
                   <tr>
@@ -82,26 +82,19 @@
         const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento";
         const ls = window.localStorage;
         $(document).ready(function(){
-          
-        	$("input[name=eleccion]").change(function() {
-        		var value=$("input[name=eleccion]").val();
-                var data=$('#ListaArtista [value="' + value + '"]').data('ejemplo');
-              alert(value+" "+ data);
-        		});
-        	
+       	
           $.get(urlArtista,function(data){
             var artista = data; 
             var opciones=$('option')
             
-            $('#btnEjecutar').click(function(){
-                console.log(data);
-            });
+            
               for(var i = 0; i < artista.length; i++){
               var nombreArtista=document.createElement('option');
               nombreArtista.textContent=artista[i].nombre;
               opciones.append( nombreArtista);
 
             }
+            
 
             
         console.log(data)
@@ -134,7 +127,14 @@
                     trNode.append(tdGeneroNode);
                     
 
-                }
+                }$('#btnEjecutar').click(function(){
+                alert("artista "+opciones.get(nombreArtista));
+              });
+              $("input[name=eleccion]").change(function() {
+        		var value=$("input[name=eleccion]").val();
+                var data=$('#ListaArtista [value="' + value + '"]').data('ejemplo');
+              alert(value+" "+ data);
+        		});
               });
               
         });       
