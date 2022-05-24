@@ -46,7 +46,7 @@
 
       <p id="parrafo">Parrafo</p>
 
-         
+      <img>
       
 
     </div>
@@ -108,7 +108,7 @@
                 noticiaParrafo.textContent= data[i].noticiaTexto;
                 pathnoticiaImg=data[i].imagenUri;
                 console.log("imagen = "+pathnoticiaImg)
-                noticiaImg.attr("src",pathnoticiaImg);
+                $("img:last").attr("src",pathnoticiaImg);
                 panelNoticia.append(noticiah1);
                 panelNoticia.append(noticiah2);
                 panelNoticia.append(noticiaParrafo);
