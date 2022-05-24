@@ -42,6 +42,7 @@
 
 
         </datalist>
+        <button id="btnMostrar">Aceptar</button>
         
             <table class="table">
               <thead>
@@ -80,16 +81,21 @@
         const urlEventoArtista =  "https://pgyex2.azurewebsites.net/api/Evento";
         const ls = window.localStorage;
         $(document).ready(function(){
+          
           $.get(urlArtista,function(data){
             var artista = data; 
             var opciones=$('option')
-
+            
+            $('#btnEjecutar').click(function(){
+                console.log(data);
+            });
               for(var i = 0; i < artista.length; i++){
               var nombreArtista=document.createElement('option');
               nombreArtista.textContent=artista[i].nombre;
-              opciones.append(nombreArtista);
+              opciones.append( nombreArtista);
 
             }
+
             
         console.log(data)
                 var artista = data; 
@@ -123,10 +129,7 @@
 
                 }
               });
-            function prueba(selector)  {
-
-            };
-
+              
         });       
     </script>
 
