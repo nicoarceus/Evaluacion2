@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="lista">
+    
+</div>
+
+    
+         <script src="jquery/jquery-3.6.0.js"></script>
+        <script type="text/javascript">
+            registros = {
+            length:3,
+            0:{"contador":1,"Monto":30,"Fecha":"2017-09-07 11:51:15"
+            },
+            1:{"contador":2,"Monto":30,"Fecha":"2017-09-07 11:51:15"
+            },
+            2:{"contador":3,"Monto":30,"Fecha":"2017-09-07 11:51:15"
+            }
+            }
+            html ="<table class='table'><thead>";
+            html +="<tr><th>#</th><th>Total Monto</th><th>Fecha de Registro</th><th>Opciones</th></tr>";
+            html +="</thead><tbody>";
+            for (var i = 0; i < registros.length; i++) {
+                html +="<tr><td>"+registros[i]["contador"]+"</td><td><input id='edit"+registros[i]["contador"]+"' value='"+registros[i]["Monto"]+"' disabled> </td><td>"+registros[i]["Fecha"]+"</td><td><input type='button' value='Editar' onclick='z=document.getElementById(\"edit"+registros[i]["contador"]+"\");z.disabled=\"\";z.focus();z.select();'><i class='fa fa-pencil' aria-hidden='true'></td></tr>";
+                };
+                $("#lista").html(html);
+
+
+
+
+        </script>
+    
+</body>
+</html>

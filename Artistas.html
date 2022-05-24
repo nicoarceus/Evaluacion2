@@ -32,34 +32,24 @@
               </div>
             </nav>
       </header>
-<body>
-  <div class="container">
-    <h1>Artistas:</h1>
-    <div class="row" id="onload">
-      <select id="ListaArtista"></select>
       
-        <button id="btnEjecutar">ejecutar ventana</button>
-       
-            <table class="table">
-              <thead>
-                  <tr>
-                      <th scope="col">Numero</th>
-                      <th scope="col">Nombre artista</th>
-                      <th scope="col">fecha nacimiento</th>
-                      <th scope="col">Lugar de nacimiento</th>
-                      <th scope="col">edad</th>
-                      <th scope="col">genero </th>
-                      
-                  </tr>
-              </thead>
-              <tbody>        </tbody>
-          </table>
-       </div>
-
-       
-    </div>
+        <select id="listaArtistas" ></select>
     
-</div>
+        <table class="table" id="tablaEventos" border="1">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Nombre evento</th>
+                    
+                    <th scope="col">Lugar</th>
+                    <th scope="col">fecha</th>
+                    <th scope="col">Tipo de evento</th>
+                    <th scope="col">Espacio evento</th>
+                </tr>
+            </thead>
+            <tbody>        </tbody>
+        </table>
+        <button id="btnComprar" disabled>Comprar entrada</button>
       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -91,7 +81,7 @@
               }
             console.log(data)
 
-            
+
             //tabla eventos
                 
                 var tBodyNode = $('tbody');
@@ -122,7 +112,8 @@
                     trNode.append(tdGeneroNode);
                     
 
-                }$('#btnEjecutar').click(function(){
+                }
+                $('#btnEjecutar').click(function(){
                 alert("artista "+opciones.get(nombreArtista));
               });
               $("input[name=eleccion]").change(function() {
