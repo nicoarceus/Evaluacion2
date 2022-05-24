@@ -34,14 +34,28 @@
             </nav>
     </header>
     <!--formas de pago -->
+    <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">id</th>
+              <th scope="col">Nombre </th>
+              <th scope="col">numero asiento</th>
+              <th scope="col">Precio</th>
+              
+              
+          </tr>
+      </thead>
+      <tbody>        </tbody>
+  </table>
     <select class="form-select" aria-label="Default select example">
         <option selected>Seleccione metodo de pago</option>
         <a href="index.html"><option value="1">Debito</option></a>
         <a href="index.html"><option value="2">Credito</option></a>
         <a href="index.html"><option value="3">Transferencia</option></a>
         <a href="index.html"><option value="4">Khipu</option></a>
-
+      
       </select>
+      <a href="index.html"><button id="botonInicio" >Aceptar metodo de pago</button></a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!--JavaScript-->
 <script src="jquery/jquery-3.6.0.js"></script>
@@ -52,7 +66,46 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script type="text/javascript">
-      
+      const urlTicket="https://pgyex2.azurewebsites.net/api/TipoTicket";
+      const urlEvento="https://pgyex2.azurewebsites.net/api/Evento";
+      const urlArtista="https://pgyex2.azurewebsites.net/api/Artista";
+      $(document).ready(function(){
+        $.get(urlTicket,function(data){
+          console.log(data)
+          var ticket = data; 
+                var tBodyNode = $('tbody');
+                for(var i = 0; i < ticket.length; i++){
+                    var trNode = document.createElement('tr'); // Generamos la Fila
+                    tBodyNode.append(trNode); // Agregamos la fila al tbody
+
+                    var tdIdNode = document.createElement('td');
+                    tdIdNode.textContent = i + 1; // Para que los # no empiecen en 0
+                    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
+                    
+                    var tdNombreNode = document.createElement('td');
+                    tdNombreNode.textContent = ticket[i].nombre;
+                    trNode.append(tdNombreNode);
+
+
+                    var tdNumeroAsientoNode = document.createElement('td');
+                    tdNumeroAsientoNode.textContent = ticket[i].asientoNumerado;
+                    if(tdNumeroAsientoNode.textContent ==false){
+                      tdNumeroAsientoNode.textContent = "asiento no disponible"; 
+                    }else{
+                      tdNumeroAsientoNode.textContent = "asiento disponible";
+                    }
+                    trNode.append(tdNumeroAsientoNode);
+
+
+                    var tdPrecioNode = document.createElement('td');
+                    tdPrecioNode.textContent = ticket[i].valor;
+                    trNode.append(tdPrecioNode);
+                }
+              
+        });
+
+
+      });
 </script>
 </body>
 </html>

@@ -42,7 +42,7 @@
 
 
         </datalist>
-        <button id="btnMostrar">Aceptar</button>
+        <input type="submit" value="Enviar">
         
             <table class="table">
               <thead>
@@ -82,6 +82,12 @@
         const ls = window.localStorage;
         $(document).ready(function(){
           
+        	$("input[name=eleccion]").change(function() {
+        		var value=$("input[name=eleccion]").val();
+                var data=$('#ListaArtista [value="' + value + '"]').data('ejemplo');
+              alert(value+" "+ data);
+        		});
+        	
           $.get(urlArtista,function(data){
             var artista = data; 
             var opciones=$('option')
