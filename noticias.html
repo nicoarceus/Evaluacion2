@@ -36,7 +36,7 @@
 
     <!--Encabezado-->
     <div  class ="container-fluid text-center p-4 bg-black p-2 text-warning m-1">
-        <h1>Noticias de nustros artistas</h1>    
+        <h1>Noticias de nuestros artistas</h1>    
     </div>
 
     <div class="container-fluid" id="contenido">
@@ -46,12 +46,12 @@
 
       <p id="parrafo">Parrafo</p>
 
-      <button id="boton" onclick="traer()"> Presiona aqui para desaparecer parrafo</button>
-      
+         
       
 
     </div>
-    
+    <button id="boton" onclick="traer()"> Presiona aqui para desaparecer parrafo</button>
+   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
     
 
@@ -85,13 +85,43 @@
 
 
    <script>
+     urlNoticia="https://pgyex2.azurewebsites.net/api/Noticia";
         $(document).ready(function(){
-            $.get("https://pgyex2.azurewebsites.net/api/Noticia",
-                function(data, status){
-  
-                  console.log(data)
+            $.get(urlNoticia,function(data, status){
+              console.log("antes de entrar al ciclo");
+              
+              var panelNoticia = document.getElementById("contenido");
+              var noticiah1 ;
+              var noticiah2;
+              var noticiaImg;
+              var noticiaParrafo;
+              var pathnoticiaImg;
+              console.log(panelNoticia);
+              for(var i=0;i<data.length;i++){
+                noticiah1 = document.createElement('h1');
+                noticiah2=document.createElement('h2');
+                noticiaParrafo=document.createElement('p');
+                noticiaImg=document.createElement('img');
+                
+                noticiah1.textContent= data[i].titulo;
+                noticiah2.textContent= data[i].subtitulo;
+                noticiaParrafo.textContent= data[i].noticiaTexto;
+                pathnoticiaImg=data[i].imagenUri;
+                console.log("imagen = "+pathnoticiaImg)
+                noticiaImg.attr("src",pathnoticiaImg);
+                panelNoticia.append(noticiah1);
+                panelNoticia.append(noticiah2);
+                panelNoticia.append(noticiaParrafo);
+                panelNoticia.append(noticiaImg);
+              };
+              console.log("despues del ciclo")
+                  
             });
         });
+
+
+
+
     </script> 
 
 
