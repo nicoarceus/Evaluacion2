@@ -97,65 +97,103 @@
           console.log(data)
           var ticket = data; 
                 var tBodyNode = $('tbody');
+                var htmlTotal;
+
                 for(var i = 0; i < ticket.length; i++){
-                    var trNode = document.createElement('tr'); // Generamos la Fila
-                    tBodyNode.append(trNode); // Agregamos la fila al tbody
-
-                    var tdIdNode = document.createElement('td');
-                    tdIdNode.textContent = i + 1; // Para que los # no empiecen en 0
-                    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
-                    
-                    var tdNombreNode = document.createElement('td');
-                    tdNombreNode.textContent = ticket[i].nombre;
-                    trNode.append(tdNombreNode);
-
-
-                    var tdNumeroAsientoNode = document.createElement('td');
-                    tdNumeroAsientoNode.textContent = ticket[i].asientoNumerado;
-                    if(tdNumeroAsientoNode.textContent ==false){
-                      tdNumeroAsientoNode.textContent = "asiento no disponible"; 
-                    }else{
-                      tdNumeroAsientoNode.textContent = "asiento disponible";
-                    }
-                    trNode.append(tdNumeroAsientoNode);
-
-
-                    var tdPrecioNode = document.createElement('td');
-                    tdPrecioNode.textContent = ticket[i].valor;
-                    trNode.append(tdPrecioNode);
-
-                    var tdCantidad = document.createElement('td');
-                    tdCantidad.textContent=0;
-                    trNode.append(tdCantidad);
-
+                  htmlTotal='<tr>';                
+                //    var trNode = document.createElement('tr'); // Generamos la Fila
+                //    tBodyNode.append(trNode); // Agregamos la fila al tbody
+                    htmlTotal+='<td>'+i+'</td>' ;
                     
 
-                    
-                   // var tdCantidad=document.createElement('td');
-                   // tdCantidad
-                   // trNode.append(tdCantidad.inputMode);  
-                }
-                $("table tbody tr").find("td:last").each(function(){
-                  var btnMas = '<input type="button" value=" + " id="mas" style="text-align:center">';
-                    $(this).append('<br> '+btnMas);
-                    var btnMenos = '<input type="button" value=" - " id="menos" onclick="aumentar()">';
-                    $(this).append(btnMenos);
-                    
-                    $('#btnMas').click(function(){
-                      console.log("se agrega o")
-                      tdCantidad.textContent++;
-                      
-
-
-                    })
-                })
+                //    var tdIdNode = document.createElement('td');
+                //    tdIdNode.textContent = i + 1; // Para que los # no empiecen en 0
+                //    trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
+                    htmlTotal+='<td>'+ticket[i].nombre+'</td>' ;
+                //    var tdNombreNode = document.createElement('td');
+                //    tdNombreNode.textContent = ticket[i].nombre;
+                //    trNode.append(tdNombreNode);
                 
+//
+                //    var tdNumeroAsientoNode = document.createElement('td');
+                //    tdNumeroAsientoNode.textContent = ticket[i].asientoNumerado;
+                //    if(tdNumeroAsientoNode.textContent ==false){
+                //      tdNumeroAsientoNode.textContent = "asiento no disponible"; 
+                //    }else{
+                //      tdNumeroAsientoNode.textContent = "asiento disponible";
+                //    }
+                if(ticket[i].asientoNumerado){
+                  htmlTotal+='<td>'+"asiento disponible"+'</td>' ;
+                }
+                else
+                {
+                  htmlTotal+='<td>'+"asiento no disponible"+'</td>' ;
+                }
+                
+                //    trNode.append(tdNumeroAsientoNode);
+                htmlTotal+='<td>'+ticket[i].valor+'</td>' ;
+//
+                //    var tdPrecioNode = document.createElement('td');
+                //    tdPrecioNode.textContent = ticket[i].valor;
+                //    trNode.append(tdPrecioNode);
+                htmlTotal+='<td>'+0+'</td>' ;
+                //    var tdCantidad = document.createElement('td');
+                //    tdCantidad.textContent=0;
+                //    trNode.append(tdCantidad);
+                htmlTotal+='<td></td>' ;
+                //    var tdVacio = document.createElement('td');
+                //    
+                //    trNode.append(tdVacio);
+                htmlTotal+='<td id="AquiVaBotonMas" ></td>' ;
+                htmlTotal+='<td id="AquiVaBotonMenos" ></td>' ;
+                //    var btnMas = '<input type="button" value=" + " id="mas" onclick="aumentar()" >';
+                //    var tdDiv= document.createElement('td');
+                //  
+                //  trNode.append("    "+btnMas);
+                //   // var tdCantidad=document.createElement('td');
+                //   // tdCantidad
+                //   // trNode.append(tdCantidad.inputMode);  
+                tBodyNode.append(htmlTotal);
+                $('#AquiVaBotonMas').replaceWith(
+                  '<input type="button" value=" + " id="mas" onclick="aumentar('+i+')" >'
+                );
+                $('#AquiVaBotonMenos').replaceWith(
+                  '<input type="button" value=" - " id="menos" onclick="disminuir('+i+')" >'
+                );
+                }
+                
+                
+               
               
           });
         }
-        function aumentar(){
-          console.log("aumentar en 1");
+        function aumentar(i){
+          var indice=i+1;
+          console.log("aumentar en 1 -->"+indice);
+          var tdActual=$("tr:nth-child("+indice+")").find("td:nth-child(5)");
+          
+          
+          var aux=tdActual.html();
+          console.log("valor actual 1= "+aux);
+          aux++;
+          console.log("valor actual 2= "+aux);
+          tdActual.html(aux);
+          console.log("valor actual 3= "+tdActual.html(aux));
+
         };
+        function disminuir(i){
+          var indice=i+1;
+          console.log("aumentar en 1 -->"+indice);
+          var tdActual=$("tr:nth-child("+indice+")").find("td:nth-child(5)");
+          var aux=tdActual.html();
+          console.log("valor actual 1= "+aux);
+          aux--;
+          console.log("valor actual 2= "+aux);
+          tdActual.html(aux);
+          console.log("valor actual 3= "+tdActual.html(aux));
+
+        };
+
         function getParameterByName(name) {
           console.log(name);
             
