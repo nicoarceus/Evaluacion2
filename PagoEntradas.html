@@ -52,7 +52,10 @@
       </thead>
       <tbody>        </tbody>
   </table>
-    <select class="form-select" aria-label="Default select example">
+  <input type="text" id="Total" placeholder="0" value="0"></input>
+    
+  
+  <select class="form-select" aria-label="Default select example">
         <option selected>Seleccione metodo de pago</option>
         <a href="index.html"><option value="1">Debito</option></a>
         <a href="index.html"><option value="2">Credito</option></a>
@@ -171,29 +174,40 @@
           var indice=i+1;
           console.log("aumentar en 1 -->"+indice);
           var tdActual=$("tr:nth-child("+indice+")").find("td:nth-child(5)");
-          
+          var valor=$("tr:nth-child("+indice+")").find("td:nth-child(4)");
+
           
           var aux=tdActual.html();
-          console.log("valor actual 1= "+aux);
+       //   console.log("valor actual 1= "+aux);
           aux++;
-          console.log("valor actual 2= "+aux);
+          var total=aux*valor;
+         // console.log("valor actual 2= "+aux);
           tdActual.html(aux);
-          console.log("valor actual 3= "+tdActual.html(aux));
+        //  console.log("valor actual 3= "+tdActual.html(aux));
+          calcularTotal();
 
         };
         function disminuir(i){
           var indice=i+1;
-          console.log("aumentar en 1 -->"+indice);
+          //console.log("aumentar en 1 -->"+indice);
           var tdActual=$("tr:nth-child("+indice+")").find("td:nth-child(5)");
           var aux=tdActual.html();
-          console.log("valor actual 1= "+aux);
+          //console.log("valor actual 1= "+aux);
           aux--;
-          console.log("valor actual 2= "+aux);
+          //console.log("valor actual 2= "+aux);
           tdActual.html(aux);
-          console.log("valor actual 3= "+tdActual.html(aux));
-
+         // console.log("valor actual 3= "+tdActual.html(aux));
+          calcularTotal();
         };
-
+        function calcularTotal(){
+          console.log("calculando el total")
+          var totalEntrada=Number($('#Total').val())+1;
+          console.log("total entrada= "+totalEntrada)
+          
+          
+          $('#Total').val(totalEntrada);
+          
+        };
         function getParameterByName(name) {
           console.log(name);
             
