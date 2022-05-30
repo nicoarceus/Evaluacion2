@@ -28,16 +28,8 @@
                     <li class="nav-item">
                       <a class="nav-link" href="noticias.html">Noticias</a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Boletos
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="EventoArtista.html">Eventos disponibles</a></li>
-                        <li><a class="dropdown-item" href="#"></a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"></a></li>
-                      </ul>
+                    <li class="nav-item ">
+                      <a class="nav-link " href="EventoArtista.html">Eventos</a>                      
                     </li>
                     <li class="nav-item">
                       <a class="nav-link disabled"></a>
@@ -135,43 +127,6 @@
     <script type="text/javascript">
         
         
-      //  function cargarNoticias(id){
-      //  console.log("cargando eventos id["+id+"]")
-      //  const urlEvArtistaId="https://pgyex2.azurewebsites.net/api/Evento/PorArtista/"+id;
-      //  const eventos="https://pgyex2.azurewebsites.net/api/Evento";
-      //  $.get(urlEvArtistaId,function(data){
-      //      $('#btnComprar').attr('disabled',false);
-      //      var tBodyNode = $('tbody');
-      //      var trNode = document.createElement('tr'); // Generamos la Fila
-      //              tBodyNode.append(trNode); // Agregamos la fila al tbody
-      //              var tdIdNode = document.createElement('td');
-      //              tdIdNode.textContent =  data.id; // Para que los # no empiecen en 0
-      //              trNode.append(tdIdNode); // Agregamos la columna id a la fila        var tdNameNode = document.createElement('td');
-      //              var tdNombreNode = document.createElement('td');
-      //              tdNombreNode.textContent = data.nombre;
-      //              trNode.append(tdNombreNode);
-  //
-      //              
-      //              
-      //              var tdLugarNode = document.createElement('td');
-      //              tdLugarNode.textContent = data.donde;
-      //              trNode.append(tdLugarNode);
-      //              var tdFechaNode = document.createElement('td');
-      //              tdFechaNode.textContent = data.fecha.substring(0,10);
-      //              trNode.append(tdFechaNode);
-      //              var tdTipoEventoNode = document.createElement('td');
-      //              tdTipoEventoNode.textContent = data.tipoEvento;
-      //              trNode.append(tdTipoEventoNode);
-      //              tipoEvento=data.tipoEvento;
-      //              var tdEspacioNode = document.createElement('td');
-      //              tdEspacioNode.textContent = data.tipoEventoStr;
-      //              trNode.append(tdEspacioNode);
-      //              
-      //      
-      //      console.log(data.id," - "+data.nombre," - "+ data.artista.nombre)
-      //      })
-      //  }
-
     </script>
 </body>
 </html>
